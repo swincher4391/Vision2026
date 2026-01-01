@@ -108,80 +108,20 @@ body {
     text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
 }
 
-/* Grid layout */
-.board-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 10px;
-    height: calc(100vh - 180px);
-    min-height: 600px;
-    padding: 10px;
-}
-
-/* Quadrant styles */
-.quadrant {
+/* Collage layout */
+.collage {
     position: relative;
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 5px;
-    overflow: hidden;
+    height: calc(100vh - 180px);
+    min-height: 700px;
 }
 
-.quadrant::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 2px dashed rgba(139, 90, 43, 0.3);
-    border-radius: 5px;
-    pointer-events: none;
-}
-
-/* Quadrant labels */
-.quadrant-label {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    z-index: 5;
-}
-
-.quarter-tag {
-    display: inline-block;
-    background: #e74c3c;
-    color: white;
-    padding: 2px 12px;
-    border-radius: 3px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    font-family: Arial, sans-serif;
-    margin-bottom: 5px;
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-#home .quarter-tag { background: #9b59b6; }
-#financial .quarter-tag { background: #27ae60; }
-#health .quarter-tag { background: #3498db; }
-
-.quadrant-label h2 {
-    font-family: 'Caveat', cursive;
-    font-size: 1.8rem;
-    color: #2c3e50;
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
-    white-space: nowrap;
-}
-
-/* Polaroid photos */
+/* Polaroid photos - base styles */
 .polaroid {
     position: absolute;
     top: var(--top, 20%);
     left: var(--left, 20%);
     transform: rotate(var(--rotation, 0deg));
     background: #fff;
-    padding: 10px 10px 35px;
     box-shadow:
         0 4px 8px rgba(0, 0, 0, 0.2),
         0 0 0 1px rgba(0, 0, 0, 0.05);
@@ -196,20 +136,78 @@ body {
     z-index: 20;
 }
 
+/* Large polaroids */
+.polaroid.large {
+    padding: 12px 12px 45px;
+}
+
+.polaroid.large .photo {
+    width: 150px;
+    height: 150px;
+}
+
+.polaroid.large .caption {
+    font-size: 1.1rem;
+}
+
+/* Medium polaroids */
+.polaroid.medium {
+    padding: 10px 10px 38px;
+}
+
+.polaroid.medium .photo {
+    width: 110px;
+    height: 110px;
+}
+
+.polaroid.medium .caption {
+    font-size: 0.95rem;
+}
+
+/* Small polaroids */
+.polaroid.small {
+    padding: 8px 8px 32px;
+}
+
+.polaroid.small .photo {
+    width: 80px;
+    height: 80px;
+}
+
+.polaroid.small .caption {
+    font-size: 0.85rem;
+}
+
 .polaroid .photo {
-    width: 100px;
-    height: 100px;
     background-size: cover;
     background-position: center;
 }
 
 .polaroid .caption {
     font-family: 'Caveat', cursive;
-    font-size: 1rem;
     color: #555;
     text-align: center;
     margin-top: 8px;
 }
+
+/* Category tags */
+.tag {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.tag.family { background: #e74c3c; color: white; }
+.tag.home { background: #9b59b6; color: white; }
+.tag.financial { background: #27ae60; color: white; }
+.tag.health { background: #3498db; color: white; }
 
 /* Pushpins */
 .pushpin {
@@ -251,7 +249,7 @@ body {
     transform: rotate(var(--rotation, 0deg));
     background: #fffef0;
     padding: 15px 20px;
-    max-width: 160px;
+    max-width: 180px;
     box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.15);
     z-index: 1;
     transition: transform 0.3s ease;
@@ -268,7 +266,7 @@ body {
 
 .note-scrap p {
     font-family: 'Caveat', cursive;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #444;
     line-height: 1.4;
     font-style: italic;
@@ -323,15 +321,24 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 900px) {
-    .board-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, 1fr);
+    .collage {
         height: auto;
-        min-height: auto;
+        min-height: 1200px;
     }
 
-    .quadrant {
-        min-height: 350px;
+    .polaroid.large .photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .polaroid.medium .photo {
+        width: 90px;
+        height: 90px;
+    }
+
+    .polaroid.small .photo {
+        width: 70px;
+        height: 70px;
     }
 
     .board-header h1 {
@@ -340,11 +347,6 @@ body {
 
     .header-paper {
         padding: 10px 30px;
-    }
-
-    .polaroid .photo {
-        width: 80px;
-        height: 80px;
     }
 }
 
@@ -357,25 +359,27 @@ body {
         border-width: 8px;
     }
 
-    .quadrant-label h2 {
-        font-size: 1.4rem;
+    .polaroid.large .photo {
+        width: 100px;
+        height: 100px;
     }
 
-    .polaroid {
-        padding: 6px 6px 25px;
+    .polaroid.medium .photo {
+        width: 75px;
+        height: 75px;
     }
 
-    .polaroid .photo {
+    .polaroid.small .photo {
         width: 60px;
         height: 60px;
     }
 
     .note-scrap {
-        max-width: 120px;
+        max-width: 140px;
         padding: 10px 12px;
     }
 
     .note-scrap p {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 }

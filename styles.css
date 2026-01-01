@@ -162,7 +162,7 @@ body {
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-#creative .quarter-tag { background: #9b59b6; }
+#home .quarter-tag { background: #9b59b6; }
 #financial .quarter-tag { background: #27ae60; }
 #health .quarter-tag { background: #3498db; }
 
